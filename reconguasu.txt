@@ -8,19 +8,16 @@ dominio=$1
 resolvers=/home/josema96/HackerOne/hunters_tools/resolvers.txt
 permu=/home/josema96/mi_metodologia/Script_reconFORsubdomain/permutations.txtt
 
-#funtion1
 Help(){
   echo -e "\n\tRcon_Scriptkiddie.sh"
   echo -e "\n\tEjemplo de ejecución de la herramienta"
   echo -e "\n\t./subLyJ.sh"
 }
-
-#funtion2
+___________________________________________________________________________________________
 vali_domain(){
   host $dominio > /dev/null 2>&1
 }
-
-#funtion3
+___________________________________________________________________________________________
 subdomain(){
   mkdir -p $dominio $dominio/sub
 
@@ -61,8 +58,7 @@ subdomain(){
   echo -e "\n\tguardando todo los sub all 'allSub'\n"
 
 }
-
-############################################################################################
+___________________________________________________________________________________________
 #Ejecución de puredns:
 
 puredns(){
@@ -71,8 +67,7 @@ puredns(){
   #xargs -a $dominio/sub/bruteSub.txt -I@ sh -c 'subfinder -d @ | anew $dominio/sub/xargs.txt'
   echo -e "\n\ttermno la ejecucion de BruteForce con puredns\n"
 }
-
-################################################################################################
+___________________________________________________________________________________________
 #GOOGLE ANALITIC con "BuiltWidth" es una extension
 #Utilizamos una tools en lineas de comando llamado "AnaliticsRelationships"
 
@@ -86,8 +81,7 @@ AnaliticsRelationships(){
 
 #analyticsrelationships -u hackerone.com > tests ; cat tests | awk '{print $2}' | grep "hackerone.com"
 }
-
-################################################################################################
+___________________________________________________________________________________________
 #Premutation/Alterations
 
 permuALTe(){
@@ -104,9 +98,7 @@ _De forma directa ejecuando assetfinder_
 #otra manera de resolver o validar dns
 #assetfinder -subs-only testphp.vulnweb.com | tail -6 | massdns -r resolvers.txt -t A -o S -w resul.txt.
 }
-
-###########################################################################################
-
+___________________________________________________________________________________________
 #1)Subdomio de Sondeo Web
 
 js_code_Sub(){
@@ -134,9 +126,7 @@ js_code_Sub(){
 #echo [+] ejecutando assetfinder [+] ; echo "testphp.vulnweb.com" | assetfinder -subs-only > sub.txt1 ; cat sub.txt1 ; httpx -silent -random-agent -retries 2 -no-color > http.txt2 ; gospider -S http.txt2 --js -t 50 -d 1 --sitemap --robots -w -r > gos.txt3 ; cat gos.txt3 | grep -Eo 'https?://[^ ]+' | sed 's/]$//' | unfurl -u domains | anew subvalido.txt4
 
 }
-
-###################################################################################################
-
+___________________________________________________________________________________________
 xargsSub(){
   cp $dominio/sub/*.txt $dominio/sub/xargsSub
   echo -e "\n\tSearch buscando subdominio dentro de subdominio Encontrado'\n"
@@ -145,7 +135,7 @@ xargsSub(){
   rm $dominio/sub/xargsSub
 
 }
-
+___________________________________________________________________________________________
 resol_Domain(){
   cp $dominio/sub/*.txt $dominio/sub/resolverSub
   #echo -e "\n\tValidando resolvers DNS con 'puredns'\n"
@@ -154,9 +144,7 @@ resol_Domain(){
   #xargs -a $dominio/sub/allsub -I@ sh -c 'puredns resolve @ -w $domain/sub/sub_real.txt -r $resolvers'
 
 #}
-
-
-#funtion8
+___________________________________________________________________________________________
 #main call funtions
 if [ "$#" == "1" ];then
   vali_domain
